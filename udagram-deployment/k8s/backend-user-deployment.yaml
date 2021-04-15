@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: backend-user
+  name: backend-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+      - image: dejavxtrem/udagram-microservice-user
+        name: backend-user 
+        imagePullPolicy: Always  
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "4096Mi"
+            cpu: "500m"      
+        env:
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL 
+        - name: SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: SECRET
+        - name: POSTGRES_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DATABASE
+        - name: POSTGRES_DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DATABASE_HOST
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_USERNAME
+      restartPolicy: Always

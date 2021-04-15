@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  AWS_MEDIA_BUCKET: test-611253212859-dev
+  AWS_PROFILE: default
+  AWS_REGION: us-east-2
+  SECRET: donjazzy
+  POSTGRES_DATABASE: postgres
+  POSTGRES_DATABASE_HOST: udagramdejaydev.ctccrm8xddf0.us-east-2.rds.amazonaws.com
+  URL: http://localhost:8100  
+metadata:
+  name: env-config
